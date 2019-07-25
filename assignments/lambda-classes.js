@@ -25,6 +25,11 @@ class Instructor extends Person{
     grade(student, subject){
         return `${student.name} receives a perfect score on ${subject}`
     }
+    critic(student){
+        let gradeSum = Math.floor(Math.random() * 100)
+        student.grade = gradeSum
+        return `${this.name} gave ${student.name} a grade of ${gradeSum}`
+    }
 }
 
 class Student extends Person {
@@ -34,18 +39,25 @@ class Student extends Person {
         this.previousBackground = studentAttrs.previousBackground;
         this.className = studentAttrs.className;
         this.favSubjects = studentAttrs.favSubjects;
+        this.grade = studentAttrs.grade
     }
-    listsSubjects(){
-        this.favSubjects.forEach(() => {
-           return this.favSubjects 
+
+    listsSubjects(){   
+        this.favSubjects.forEach(function(item){
+            console.log(item)
         })
-        
     }
+    
     PRAssignment(subject){
-        return `${student.name} has submitted a PR for ${subject}`
+        return `${this.name} has submitted a PR for ${subject}`
     }
     sprinChallenge(subject){
-        return `${student.name} has begun sprint challenge ${subject}`
+        return `${this.name} has begun sprint challenge ${subject}`
+    }
+    graduate(){
+        if(this.grade < 70){
+            return `${this.name} cannot graduate :'(`
+        }else{return `${this.name} can graduate :)`}
     }
 }
 
@@ -60,7 +72,7 @@ class ProjectManager extends Instructor {
         return `${this.name} announces to ${slackChannel}, @channel standy times!`
     }
     debugCode(studentObj, subject){
-       return `${this.name} debugs${studerObj.name}'s code on ${subject}` 
+       return `${this.name} debugs ${studentObj.name}'s code on ${subject}` 
     }
 }
 
@@ -93,7 +105,8 @@ const matthew = new Student({
     age: 31,
     previousBackground: 'Udemy',
     className: 'Web22',
-    favSubjects: ['OOP', 'JS', 'LESS']
+    favSubjects: ['OOP', 'JS', 'LESS'],
+    grade: 100
   });
 
   const bambam = new Student({
@@ -102,7 +115,8 @@ const matthew = new Student({
     age: 3,
     previousBackground: 'Smashing things',
     className: 'Rock22',
-    favSubjects: ['Smash', 'Squish', 'Hit']
+    favSubjects: ['Smash', 'Squish', 'Hit'],
+    grade: 100
   });
 
 
@@ -122,15 +136,29 @@ const dino  = new ProjectManager({
     location: 'Freds House',
     age: 12,
     gradClassName: 'Rock19',
-    favInstructor:  'Brit'
+    favInstructor:  'all of them'
 });
-
+// Instructor logs
 console.log(fred.speak())
 console.log(fred.demo("JavaSrcipt"))
 console.log(fred.grade(bambam, "CSS"))
+
+// Student Logs
+matthew.listsSubjects()
+console.log(matthew.speak())
+console.log(matthew.PRAssignment("JavaScript IV"))
+console.log(bambam.sprinChallenge("JavaScript Fundamentals"))
+console.log(matthew.grade)
+
+// TL logs
 console.log(dino.speak())
-console.log()
-console.log()
-console.log()
-console.log()
-console.log()
+console.log(dino.standUp('web22_mack'))
+console.log(mack.debugCode(matthew, "closure"))
+
+// stretch logs
+console.log(mack.critic(matthew))
+console.log(matthew.grade)
+console.log(dino.critic(bambam))
+console.log(bambam.grade)
+console.log(bambam.graduate())
+
