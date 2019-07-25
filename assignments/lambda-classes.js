@@ -35,10 +35,21 @@ class Student extends Person{
         this.className = studentAttrs.className
         this.favSubjects = studentAttrs.favSubjects
     }
-    demo(subject){
-        return `Today we are learning about ${subject}`
+    listsSubjects(){
+        this.favSubjects.forEach(() => {
+           return this.favSubjects 
+        })
+        
     }
-    grade(student, subject){
-        return `${student.name} receives a perfect score on ${subject}`
+    PRAssignment(subject){
+        return `${student.name} has submitted a PR for ${subject}`
+    }
+    sprinChallenge(subject){
+        return `${student.name} has begun sprint challenge ${subject}`
     }
 }
+
+
+ProjectManagers have the following Methods:
+standUp a method that takes in a slack channel and logs `{name} announces to {channel}, @channel standy times!​​​​​
+debugsCode a method that takes in a student object and a subject and logs out {name} debugs {student.name}'s code on {subject}
