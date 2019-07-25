@@ -144,27 +144,23 @@ class Humanoid extends CharacterStats{
       constructor(villainAttrs){
         super(villainAttrs)
       }
-      atk(){
+      //a method that reduces opponents health
+      atk(target){
         target.healthPoints -= 500
         if (target.healthPoints <= 0){
           console.log(target.destroy())
-      }
-    }
-  
-      //a method that reduces opponents health
-      target.healthPoints -= 500
-      if (target.healthPoints <= 0){
-        console.log(target.destroy())
-      }
+        }
       return `${this.name} wields his ${this.weapons[0]} and strikes a blow to ${target.name}`
+        }
+    }   
+
+    class Hero extends Villain{
+        constructor(heroAttrs){
+            super(heroAttrs)
+        }
     }
-  
-    function Hero(heroAttrs){
-      Humanoid.call(this, heroAttrs)
-  
-    }
-    Hero.prototype = Object.create(Humanoid.prototype)
-    Hero.prototype = Object.create(Villain.prototype)
+    // Hero.prototype = Object.create(Humanoid.prototype)
+    // Hero.prototype = Object.create(Villain.prototype)
   
   
   
@@ -204,10 +200,10 @@ class Humanoid extends CharacterStats{
   
   
   
-//   console.log(balrog.atk(gandalf))
-//   console.log(gandalf.healthPoints)
-//   console.log(gandalf.atk(balrog))
-//   console.log(balrog.healthPoints)
+  console.log(balrog.atk(gandalf))
+  console.log(gandalf.healthPoints)
+  console.log(gandalf.atk(balrog))
+  console.log(balrog.healthPoints)
   
   
   
